@@ -1,6 +1,5 @@
 import requests
 
-
 def test_page_number():
     page = 2
 
@@ -35,7 +34,6 @@ def test_create_user():
     assert res.status_code == 201
     assert res.json()['name'] == name
 
-
 def test_delayed():
     res = requests.get('https://reqres.in/api/users?delay=3')
 
@@ -64,6 +62,7 @@ def test_login_unsuccessful():
     res = requests.post('https://reqres.in/api/register', json={
         "email": "peter@klaven"
     })
+
     assert res.status_code == 400
     assert res.text == '{"error":"Missing password"}'
 

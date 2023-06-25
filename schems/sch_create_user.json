@@ -1,0 +1,33 @@
+{
+    "title": "Root Schema",
+    "type": "object",
+    "default": {},
+    "required": [
+        "name",
+        "job",
+        "id",
+        "createdAt"
+    ],
+    "properties": {
+        "name": {
+            "title": "The name Schema",
+            "type": "string",
+            "default": ""
+        },
+        "job": {
+            "title": "The job Schema",
+            "type": "string",
+            "default": ""
+        },
+        "id": {
+            "title": "The id Schema",
+            "type": "string",
+            "default": ""
+        },
+        "createdAt": {
+            "title": "The createdAt Schema",
+            "type": "string",
+            "default": ""
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Root Schema",
+    "type": "object",
+    "default": {},
+    "required": [
+        "error"
+    ],
+    "properties": {
+        "error": {
+            "title": "The error Schema",
+            "type": "string",
+            "default": ""
+        }
+    }
+}

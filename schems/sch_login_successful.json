@@ -1,0 +1,14 @@
+{
+    "title": "Root Schema",
+    "type": "object",
+    "default": {},
+    "required": [
+        "token"
+    ],
+    "properties": {
+        "token": {
+            "title": "The token Schema",
+            "type": "string",
+            "default": ""
+        }
+    },

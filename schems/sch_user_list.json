@@ -1,0 +1,94 @@
+{
+    "title": "Root Schema",
+    "type": "object",
+    "default": {},
+    "required": [
+        "page",
+        "per_page",
+        "total",
+        "total_pages",
+        "data",
+        "support"
+    ],
+    "properties": {
+        "page": {
+            "title": "The page Schema",
+            "type": "integer",
+            "default": 0
+        },
+        "per_page": {
+            "title": "The per_page Schema",
+            "type": "integer",
+            "default": 0
+        },
+        "total": {
+            "title": "The total Schema",
+            "type": "integer",
+            "default": 0
+        },
+        "total_pages": {
+            "title": "The total_pages Schema",
+            "type": "integer",
+            "default": 0
+        },
+        "data": {
+            "title": "The data Schema",
+            "type": "array",
+            "default": [],
+            "items": {
+                "title": "A Schema",
+                "type": "object",
+                "required": [
+                    "id",
+                    "email",
+                    "first_name",
+                    "last_name",
+                    "avatar"
+                ],
+                "properties": {
+                    "id": {
+                        "title": "The id Schema",
+                        "type": "integer"
+                    },
+                    "email": {
+                        "title": "The email Schema",
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "title": "The first_name Schema",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "title": "The last_name Schema",
+                        "type": "string"
+                    },
+                    "avatar": {
+                        "title": "The avatar Schema",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "support": {
+            "title": "The support Schema",
+            "type": "object",
+            "default": {},
+            "required": [
+                "url",
+                "text"
+            ],
+            "properties": {
+                "url": {
+                    "title": "The url Schema",
+                    "type": "string",
+                    "default": ""
+                },
+                "text": {
+                    "title": "The text Schema",
+                    "type": "string",
+                    "default": ""
+                }
+            }
+        }
+    }
+}

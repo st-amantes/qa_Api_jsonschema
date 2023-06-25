@@ -1,0 +1,7 @@
+{
+    "title": "Root Schema",
+    "type": "object",
+    "default": {},
+    "required": [],
+    "properties": {}
+}
