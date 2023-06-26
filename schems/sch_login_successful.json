@@ -1,14 +1,23 @@
 {
-    "title": "Root Schema",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
     "type": "object",
     "default": {},
+    "title": "Root Schema",
     "required": [
         "token"
     ],
     "properties": {
         "token": {
-            "title": "The token Schema",
             "type": "string",
-            "default": ""
+            "default": "",
+            "title": "The token Schema",
+            "examples": [
+                "QpwL5tke4Pnpja7X4"
+            ]
         }
     },
+    "examples": [{
+        "token": "QpwL5tke4Pnpja7X4"
+    }]
+}
