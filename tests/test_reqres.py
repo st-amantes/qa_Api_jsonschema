@@ -1,13 +1,13 @@
 import requests
 from jsonschema.validators import validate
 
-from helpers import load_json_schema
+from helpers import load_json_schema, reqres_session
 
 
 def test_page_number():
     schema = load_json_schema('sch_page_number.json')
     page = 2
-    res = requests.get('https://reqres.in/api/users?page=2', params={'page': page})
+    res = reqres_session.get('/api/users?page=2', params={'page': page})
     validate(instance=res.json(), schema=schema)
     assert res.status_code == 200
     assert res.json()['per_page'] == 6
@@ -16,14 +16,14 @@ def test_page_number():
 def test_user_list():
     schema = load_json_schema('sch_user_list.json')
     default_user_count = 6
-    res = requests.get('https://reqres.in/api/users?page=2')
+    res = reqres_session.get('/api/users?page=2')
     validate(instance=res.json(), schema=schema)
     assert len(res.json()['data']) == default_user_count
 
 
 def test_not_found():
     schema = load_json_schema('sch_not_found.json')
-    res = requests.get('https://reqres.in/api/users/23')
+    res = reqres_session.get('/api/users/23')
     validate(instance=res.json(), schema=schema)
 
     assert res.status_code == 404
@@ -33,7 +33,7 @@ def test_not_found():
 def test_create_user():
     schema = load_json_schema('sch_create_user.json')
     name = "morpheus"
-    res = requests.post('https://reqres.in/api/users', json={
+    res = reqres_session.post('/api/users', json={
         "name": name,
         "job": "leader"
 
@@ -42,23 +42,24 @@ def test_create_user():
     assert res.status_code == 201
     assert res.json()['name'] == name
 
+
 def test_delayed():
     schema = load_json_schema('sch_delayed.json')
-    res = requests.get('https://reqres.in/api/users?delay=3')
+    res = reqres_session.get('/api/users?delay=3')
     validate(instance=res.json(), schema=schema)
     assert res.status_code == 200
     assert res.json()['page'] == 1
 
 
 def test_delete():
-
-    res = requests.delete('https://reqres.in/api/users/2')
+    res = reqres_session.delete('/api/users/2')
 
     assert res.status_code == 204
     assert res.text == ''
 
+
 def test_update():
-    res = requests.patch('https://reqres.in/api/users/2', json={
+    res = reqres_session.patch('/api/users/2', json={
         "name": "morpheus",
         "job": "zion resident"
     })
@@ -68,9 +69,8 @@ def test_update():
     assert res.json()["job"] == 'zion resident'
 
 
-
 def test_login_unsuccessful():
-    res = requests.post('https://reqres.in/api/register', json={
+    res = reqres_session.post('/api/register', json={
         "email": "peter@klaven"
     })
     schema = load_json_schema('sch_loggin_un.json')
@@ -80,7 +80,7 @@ def test_login_unsuccessful():
 
 
 def test_single():
-    res = requests.get('https://reqres.in/api/unknown/23')
+    res = reqres_session.get('/api/unknown/23')
     schema = load_json_schema('sch_single.json')
     validate(instance=res.json(), schema=schema)
     assert res.status_code == 404
@@ -88,7 +88,7 @@ def test_single():
 
 
 def test_list_resource():
-    res = requests.get('https://reqres.in/api/unknown')
+    res = reqres_session.get('/api/unknown')
     schema = load_json_schema('sch_list_resource.json')
     validate(instance=res.json(), schema=schema)
 
@@ -97,7 +97,7 @@ def test_list_resource():
 
 
 def test_login_successful():
-    res = requests.post('https://reqres.in/api/login', json={
+    res = reqres_session.post('/api/login', json={
         "email": "eve.holt@reqres.in",
         "password": "cityslicka"
     })
